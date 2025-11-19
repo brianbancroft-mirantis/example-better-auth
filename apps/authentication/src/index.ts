@@ -48,6 +48,21 @@ app.get("/api/session", async (c) => {
   }
 });
 
+// Provider discovery endpoint - returns which OAuth providers are enabled
+app.get("/api/auth/providers", (c) => {
+  const providers = {
+    emailPassword: true,
+    github: !!(
+      process.env.GITHUB_CLIENT_ID && process.env.GITHUB_CLIENT_SECRET
+    ),
+    google: !!(
+      process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET
+    ),
+  };
+
+  return c.json(providers);
+});
+
 // Mount better-auth routes
 app.all("/api/auth/*", async (c) => {
   return auth.handler(c.req.raw);
