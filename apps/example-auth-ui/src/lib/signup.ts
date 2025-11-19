@@ -1,8 +1,8 @@
 "use server";
 
 import { redirect } from "next/navigation";
-import { getApiUrl, getOriginUrl, getCookieHeader, setCookiesFromResponse, parseApiError, apiRequest } from "./auth.utils";
 import type { AuthActionResult } from "./auth.types";
+import { apiRequest, getApiUrl, getCookieHeader, getOriginUrl, parseApiError, setCookiesFromResponse } from "./auth.utils";
 
 /**
  * Server action for signing up
@@ -85,7 +85,7 @@ export async function signUpAction(
     // Set cookies from response headers
     await setCookiesFromResponse(response);
 
-    redirect("/dashboard");
+    redirect("/");
   } catch (error) {
     // Next.js redirect() throws a special error that we should re-throw
     if (error instanceof Error && error.message === "NEXT_REDIRECT") {

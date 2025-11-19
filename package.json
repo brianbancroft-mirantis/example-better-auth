@@ -3,7 +3,6 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "init": "pnpm install && cp sample.env .env && pnpm db:create && pnpm db:push",
     "build": "turbo run build",
     "dev": "turbo run dev",
     "dev:auth": "pnpm --filter @repo/authentication dev",
@@ -11,6 +10,7 @@
     "dev:ui": "pnpm --filter @repo/example-auth-ui dev",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "db:init": "pnpm db:create && pnpm db:push",
     "db:create": "pnpm dlx tsx scripts/create-db.js",
     "db:drop": "pnpm dlx tsx scripts/drop-db.js",
     "db:generate": "pnpm --filter @repo/db db:generate",
